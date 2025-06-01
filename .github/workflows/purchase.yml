@@ -1,0 +1,40 @@
+name: Manual BTC Purchase
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "CONFIRM" to proceed with BTC purchase'
+        required: true
+        default: ''
+
+jobs:
+  purchase:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Validate confirmation
+      if: github.event.inputs.confirm != 'CONFIRM'
+      run: |
+        echo "Purchase cancelled. You must type 'CONFIRM' to proceed."
+        exit 1
+        
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Execute BTC purchase
+      env:
+        COINCHECK_ACCESS_KEY: ${{ secrets.COINCHECK_ACCESS_KEY }}
+        COINCHECK_SECRET_KEY: ${{ secrets.COINCHECK_SECRET_KEY }}
+        LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+        LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+      run: npm run purchase
