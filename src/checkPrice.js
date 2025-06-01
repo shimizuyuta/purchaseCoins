@@ -2,7 +2,7 @@ const axios = require('axios');
 const { sendLineNotification } = require('./notifyLine');
 
 const COINCHECK_TICKER_URL = 'https://coincheck.com/api/ticker';
-const PRICE_THRESHOLD = 20000000; // テスト用に閾値を上げて通知をトリガー
+const PRICE_THRESHOLD = 12000000;
 
 async function getBtcPrice() {
   try {
