@@ -1,0 +1,20 @@
+{
+  "name": "purchase-coins",
+  "version": "1.0.0",
+  "description": "BTC price monitoring and purchasing system using Coincheck API and LINE Messaging API",
+  "main": "src/checkPrice.js",
+  "scripts": {
+    "check-price": "node src/checkPrice.js",
+    "purchase": "node src/purchaseBtc.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["bitcoin", "coincheck", "line", "cryptocurrency", "trading"],
+  "author": "shimizuyuta",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
